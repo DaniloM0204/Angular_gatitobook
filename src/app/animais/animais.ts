@@ -3,8 +3,8 @@ export interface Animal {
   postDate: Date;
   url: string;
   description: string;
-  allowComment: boolean;
-  like: number;
+  allowComments: boolean;
+  likes: number;
   comments: number;
   userId: number;
 }
