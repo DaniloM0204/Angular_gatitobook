@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Router } from '@angular/router'
-import { Observable } from 'rxjs'
-import { Animal } from '../animais'
-import { AnimaisService } from '../animais.service'
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Animal } from '../animais';
+import { AnimaisService } from '../animais.service';
 
 @Component({
   selector: 'app-detalhe-animal',
@@ -10,18 +10,18 @@ import { AnimaisService } from '../animais.service'
   styleUrls: ['./detalhe-animal.component.css'],
 })
 export class DetalheAnimalComponent implements OnInit {
-  animalId!: number
-  animal$!: Observable<Animal>
+  animalId!: number;
+  animal$!: Observable<Animal>;
 
   constructor(
     private animaisService: AnimaisService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.animalId = this.activatedRoute.snapshot.params['animalId']
-    this.animal$ = this.animaisService.buscaPorID(this.animalId)
+    this.animalId = this.activatedRoute.snapshot.params['animalId'];
+    this.animal$ = this.animaisService.buscaPorID(this.animalId);
   }
 
   curtir() {
@@ -29,7 +29,7 @@ export class DetalheAnimalComponent implements OnInit {
       if (curtida) {
         this.animal$ = this.animaisService.buscaPorID(this.animalId);
       }
-    })
+    });
   }
 
   excluir() {
@@ -37,7 +37,7 @@ export class DetalheAnimalComponent implements OnInit {
       () => {
         this.router.navigate(['/animais/']);
       },
-      (error) => console.log(error),
+      (error) => console.log(error)
     );
   }
 }
